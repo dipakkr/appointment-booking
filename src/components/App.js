@@ -1,17 +1,18 @@
 import React from 'react';
-import logo from '../logo.svg';
-import '../css/App.css';
 import AddAppointment from './AddAppointment';
 import SearchAppointment from './SearchAppointment';
 import ListAppointment from './ListAppointment';
 import { without } from 'lodash';
+import '../css/App.css';
+
 
 class App extends React.Component{
   constructor(){
     super();
     this.state = {
       myAppointments : [],
-      lastIndex : 0
+      lastIndex : 0,
+      formDisplay : true
     };
     this.deleteAppointment = this.deleteAppointment.bind(this);
   }
@@ -46,7 +47,7 @@ class App extends React.Component{
       <div className="App">
         <div className="App-header">
               
-              <AddAppointment/>
+              <AddAppointment formDisplay={this.state.formDisplay}/>
               <SearchAppointment/>
               <ListAppointment 
                   appointments={this.state.myAppointments}
