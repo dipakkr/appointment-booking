@@ -7,11 +7,7 @@ class ListAppointment extends React.Component{
 
     render(){
 
-        const listItems = this.props.appointments.map(item => (
-            <div>
-                {item.title}
-            </div>
-        ));
+       
 
         return(
             <div className="appointment-list item-list mb-3">

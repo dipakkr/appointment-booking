@@ -1,6 +1,56 @@
 import React from 'react';
+import { FaPlus }  from 'react-icons/fa';
 
 class AddAppointment extends React.Component{
+
+    // Using constructor to moniter the state of Inputs
+    constructor(){
+        super();
+        this.state = {
+            petName : '',
+            ownerName : '',
+            aptDate : '',
+            aptTime : '',
+            aptNotes : ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleAdd = this.handleAdd.bind(this);
+    }
+
+    handleChange(e){
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name] : value,
+        })
+    }
+
+    handleAdd(e){
+        
+        // Prevent from page reloading after submit
+        
+        e.preventDefault();
+
+        let tempApt = {
+            petName : this.state.petName,
+            ownerName : this.state.ownerName,
+            aptDate : this.state.aptDate  + ' ' + this.state.aptTime,
+            aptNotes : this.state.aptNotes
+        };
+
+        this.props.addAppointment(tempApt);
+
+        this.setState({
+            petName : '',
+            ownerName : '',
+            aptDate : '',
+            aptTime : '',
+            aptNotes : ''
+        })
+    }
+
     render(){
         return(
             <div 
@@ -10,12 +60,14 @@ class AddAppointment extends React.Component{
                 }>
                 
                 {/* Header  */}
-                <div className="apt-addheading card-header bg-primary text-white">
-                    Add Appointment
+                <div className="apt-addheading card-header bg-primary text-white"
+                     onClick={this.props.toggleForm}
+                >
+                  <FaPlus/>  Add Appointment
                 </div>
     
                 <div className="card-body">
-                    <form id="aptForm" noValidate>
+                    <form id="aptForm" noValidate onSubmit={this.handleAdd}>
                         <div className="form-group form-row">
                         <label
                             className="col-md-2 col-form-label text-md-right"
@@ -26,10 +78,12 @@ class AddAppointment extends React.Component{
                         </label>
                         <div className="col-md-10">
                             <input
-                            type="text"
-                            className="form-control"
-                            name="petName"
-                            placeholder="Pet's Name"
+                                type="text"
+                                className="form-control"
+                                name="petName"
+                                placeholder="Pet's Name"
+                                value={this.state.petName}
+                                onChange={this.handleChange}
                             />
                         </div>
                         </div>
@@ -43,10 +97,12 @@ class AddAppointment extends React.Component{
                         </label>
                         <div className="col-md-10">
                             <input
-                            type="text"
-                            className="form-control"
-                            name="ownerName"
-                            placeholder="Owner's Name"
+                                type="text"
+                                className="form-control"
+                                name="ownerName"
+                                placeholder="Owner's Name"
+                                value={this.state.ownerName}
+                                onChange={this.handleChange}
                             />
                         </div>
                         </div>
@@ -64,6 +120,8 @@ class AddAppointment extends React.Component{
                             className="form-control"
                             name="aptDate"
                             id="aptDate"
+                            value={this.state.aptDate}
+                            onChange={this.handleChange}
                             />
                         </div>
                         <label
@@ -78,6 +136,8 @@ class AddAppointment extends React.Component{
                             className="form-control"
                             name="aptTime"
                             id="aptTime"
+                            value={this.state.aptTime}
+                            onChange={this.handleChange}
                             />
                         </div>
                         </div>
@@ -94,6 +154,8 @@ class AddAppointment extends React.Component{
                             name="aptNotes"
                             id="aptNotes"
                             placeholder="Appointment Notes"
+                            value={this.state.aptNotes}
+                            onChange={this.handleChange}
                             />
                         </div>
                         </div>
@@ -102,7 +164,7 @@ class AddAppointment extends React.Component{
                         <div className="offset-md-2 col-md-10">
                             <button
                             type="submit"
-                            className="btn btn-primary d-block ml-auto"
+                            className="btn btn-success d-block ml-auto"
                             >
                             Add Appointment
                             </button>

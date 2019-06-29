@@ -12,9 +12,29 @@ class App extends React.Component{
     this.state = {
       myAppointments : [],
       lastIndex : 0,
-      formDisplay : true
+      formDisplay : false
     };
     this.deleteAppointment = this.deleteAppointment.bind(this);
+    this.toggleForm = this.toggleForm.bind(this);
+    this.addAppointment = this.addAppointment.bind(this);
+  }
+
+  addAppointment(apt){
+    let tempApt = this.state.myAppointments;
+    apt.aptId = this.state.lastIndex;
+
+    tempApt.unshift(apt);
+
+    this.setState({
+      myAppointments : tempApt,
+      lastIndex : this.state.lastIndex + 1
+    })
+  }
+
+  toggleForm(){
+    this.setState({
+      formDisplay : !this.state.formDisplay
+    })
   }
 
   deleteAppointment(apt){
@@ -47,8 +67,13 @@ class App extends React.Component{
       <div className="App">
         <div className="App-header">
               
-              <AddAppointment formDisplay={this.state.formDisplay}/>
+              <AddAppointment 
+                  formDisplay={this.state.formDisplay}
+                  toggleForm={this.toggleForm}
+                  addAppointment={this.addAppointment}/>
+
               <SearchAppointment/>
+
               <ListAppointment 
                   appointments={this.state.myAppointments}
                   deleteAppointment={this.deleteAppointment}/>

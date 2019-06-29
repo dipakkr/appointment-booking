@@ -7,6 +7,7 @@
     "jquery": "^3.4.1",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
+    "nodemon": "^1.19.1",
     "popper.js": "^1.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
