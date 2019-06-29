@@ -13,30 +13,51 @@ class SearchAppointment extends React.Component{
                         aria-label="Search Appointments"
                         />
                         <div className="input-group-append">
+                            
                             <button
                                 type="button"
                                 className="btn btn-primary dropdown-toggle"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
-                                aria-expanded="false">
+                                aria-expanded="true">
                                 Sort by: <span className="caret" />
                             </button>
             
                         <div className="sort-menu dropdown-menu dropdown-menu-right">
-                            <button className="sort-by dropdown-item" href="#">
+                            
+                            <button className={
+                                'sort-by dropdown-item ' + 
+                                (this.props.orderBy === 'petName' ? 'active' : '')
+                                } href="#">
                                 Pet Name
                             </button>
-                            <button className="sort-by dropdown-item" href="#">
+                            
+                            <button className={
+                                'sort-by dropdown-item ' + 
+                                (this.props.aptDate === 'aptDate' ? 'active' : '')
+                                } href="#">
                                 Date
                             </button>
-                            <button className="sort-by dropdown-item" href="#">
+                            <button className={
+                                'sort-by dropdown-item ' + 
+                                (this.props.orderBy === 'ownerName' ? 'active' : '')
+                                } href="#">
                                 Owner
                             </button>
+                            
                             <div role="separator" className="dropdown-divider" />
-                            <button className="sort-by dropdown-item" href="#">
+                            
+                            <button className={
+                                'sort-by dropdown-item ' + 
+                                (this.props.orderDir=== 'asc' ? 'active' : '')
+                                } href="#">
                                 Asc
                             </button>
-                            <button className="sort-by dropdown-item" href="#">
+                            
+                            <button className={
+                                'sort-by dropdown-item ' + 
+                                (this.props.orderDir === 'desc' ? 'active' : '')
+                                } href="#">
                                 Desc
                             </button>
                         </div>

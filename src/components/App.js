@@ -12,8 +12,11 @@ class App extends React.Component{
     this.state = {
       myAppointments : [],
       lastIndex : 0,
-      formDisplay : false
+      formDisplay : false,
+      orderBy : 'ownerName',
+      orderDir : 'asc'
     };
+
     this.deleteAppointment = this.deleteAppointment.bind(this);
     this.toggleForm = this.toggleForm.bind(this);
     this.addAppointment = this.addAppointment.bind(this);
@@ -62,6 +65,24 @@ class App extends React.Component{
   }
 
   render(){
+
+    let order;
+    let filteredApts = this.state.myAppointments;
+
+    if(this.state.orderDir === 'asc'){
+      order = 1;
+    }else{
+      order = -1;
+    }
+
+    filteredApts.sort((a, b) => {
+      if(a[this.state.orderBy].toLowerCase() < b[this.state.orderBy].toLowerCase()){
+        return -1* order;
+      }else{
+        return 1 * order;
+      }
+    })
+
   
     return(
       <div className="App">
@@ -72,10 +93,13 @@ class App extends React.Component{
                   toggleForm={this.toggleForm}
                   addAppointment={this.addAppointment}/>
 
-              <SearchAppointment/>
+              <SearchAppointment
+                orderBy={this.state.orderBy}
+                orderDir={this.state.orderDir}
+              />
 
               <ListAppointment 
-                  appointments={this.state.myAppointments}
+                  appointments={filteredApts}
                   deleteAppointment={this.deleteAppointment}/>
 
         </div>

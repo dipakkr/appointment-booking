@@ -32,7 +32,6 @@ class AddAppointment extends React.Component{
         // Prevent from page reloading after submit
         
         e.preventDefault();
-
         let tempApt = {
             petName : this.state.petName,
             ownerName : this.state.ownerName,
@@ -41,7 +40,7 @@ class AddAppointment extends React.Component{
         };
 
         this.props.addAppointment(tempApt);
-
+        
         this.setState({
             petName : '',
             ownerName : '',
