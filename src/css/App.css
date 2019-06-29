@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   color: white;
 }
 
@@ -23,6 +22,10 @@
 /* Add Appointment Class */
 .apt-addheading{
   cursor: pointer;
+}
+
+.search-bar{
+  min-width: 250px;
 }
 
 

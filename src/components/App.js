@@ -22,6 +22,13 @@ class App extends React.Component{
     this.toggleForm = this.toggleForm.bind(this);
     this.addAppointment = this.addAppointment.bind(this);
     this.changeOrder = this.changeOrder.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+
+  handleSearch(query){
+    this.setState({
+      queryText : query
+    });
   }
 
   changeOrder(order, dir){
@@ -118,6 +125,7 @@ class App extends React.Component{
                 orderBy={this.state.orderBy}
                 orderDir={this.state.orderDir}
                 changeOrder={this.changeOrder}
+                searchApts={this.handleSearch}
               />
 
               <ListAppointment 
