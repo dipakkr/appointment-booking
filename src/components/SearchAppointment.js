@@ -28,20 +28,26 @@ class SearchAppointment extends React.Component{
                             <button className={
                                 'sort-by dropdown-item ' + 
                                 (this.props.orderBy === 'petName' ? 'active' : '')
-                                } href="#">
+                                }
+                                onClick={e => this.props.changeOrder('petName', this.props.orderDir)}
+                                href="#">
                                 Pet Name
                             </button>
                             
                             <button className={
                                 'sort-by dropdown-item ' + 
                                 (this.props.aptDate === 'aptDate' ? 'active' : '')
-                                } href="#">
+                                } 
+                                onClick={e => this.props.changeOrder('aptDate', this.props.orderDir)}
+                                href="#">
                                 Date
                             </button>
                             <button className={
                                 'sort-by dropdown-item ' + 
                                 (this.props.orderBy === 'ownerName' ? 'active' : '')
-                                } href="#">
+                                } 
+                                onClick={e => this.props.changeOrder('ownerName', this.props.orderDir)}
+                                href="#">
                                 Owner
                             </button>
                             
@@ -50,14 +56,18 @@ class SearchAppointment extends React.Component{
                             <button className={
                                 'sort-by dropdown-item ' + 
                                 (this.props.orderDir=== 'asc' ? 'active' : '')
-                                } href="#">
+                                } 
+                                onClick={e => this.props.changeOrder(this.props.orderBy, 'asc')}
+                                href="#">
                                 Asc
                             </button>
                             
                             <button className={
                                 'sort-by dropdown-item ' + 
                                 (this.props.orderDir === 'desc' ? 'active' : '')
-                                } href="#">
+                                } 
+                                onClick={e => this.props.changeOrder(this.props.orderBy, 'desc')}
+                                href="#">
                                 Desc
                             </button>
                         </div>
