@@ -24,8 +24,16 @@
   cursor: pointer;
 }
 
-.search-bar{
-  min-width: 250px;
+.input-group{
+  width: 300px;
+  align-items: center;
+}
+
+.not-found{
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  text-align: center;
 }
 
 

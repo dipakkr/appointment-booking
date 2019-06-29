@@ -2,7 +2,7 @@ import React from 'react';
 import AddAppointment from './AddAppointment';
 import SearchAppointment from './SearchAppointment';
 import ListAppointment from './ListAppointment';
-import { without } from 'lodash';
+import { findIndex, without } from 'lodash';
 import '../css/App.css';
 
 
@@ -23,6 +23,22 @@ class App extends React.Component{
     this.addAppointment = this.addAppointment.bind(this);
     this.changeOrder = this.changeOrder.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.updateInfo = this.updateInfo.bind(this);
+  }
+
+  // Editing Data
+  updateInfo(name, value, id){
+    // Block scope variable
+    let tempApts = this.state.myAppointments;
+    let aptIndex = findIndex(this.state.myAppointments, {
+      aptId : id
+    });
+
+    tempApts[aptIndex][name] = value;
+
+    this.setState({
+      myAppointments : tempApts
+    })
   }
 
   handleSearch(query){
@@ -130,7 +146,8 @@ class App extends React.Component{
 
               <ListAppointment 
                   appointments={filteredApts}
-                  deleteAppointment={this.deleteAppointment}/>
+                  deleteAppointment={this.deleteAppointment}
+                  updateInfo={this.updateInfo}/>
 
         </div>
       </div>
