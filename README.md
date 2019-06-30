@@ -1,4 +1,4 @@
-Appointment Booking - REACTJS PROJECT
+# Appointment Booking - ReactJS 
 
 ## Library Used
 
